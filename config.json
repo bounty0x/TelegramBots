@@ -1,0 +1,13 @@
+{
+	"master": 419920379,
+	"token": "464673588:AAGmEHGefBBLtCfJTlbUEoKQ-TjVnxDUn_s",
+	"plugins": [],
+	"deleteCommands": "own",
+	"numberOfWarnsToBan": 2,
+	"groupsInlineKeyboard": [],
+	"warnInlineKeyboard": [],
+	"excludeLinks": [
+		"Bounty0x",
+		"Bounty0xAnn"
+	]
+}
