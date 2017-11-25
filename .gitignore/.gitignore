@@ -63,7 +63,7 @@ typings/
 
 
 ### VisualStudioCode ###
-.vscode/*
+.vscode/
 !.vscode/settings.json
 !.vscode/tasks.json
 !.vscode/launch.json
@@ -73,3 +73,5 @@ typings/
 config.json
 
 # End of https://www.gitignore.io/api/node,visualstudiocode
+
+data/
