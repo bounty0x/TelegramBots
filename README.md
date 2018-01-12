@@ -1,6 +1,6 @@
 <p align="center">
   <img src="http://imageupload.co.uk/images/2017/09/28/zzzzz.png" width="180" height="180">
-  <h1 align="center">The Guard Bot</h1>
+  <h1 align="center">The Bounty0x Community Bot</h1>
 </p>
 The Guard is a Telegram bot made to help admins manage their groups.
 
