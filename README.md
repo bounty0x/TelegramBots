@@ -2,17 +2,12 @@
   <img src="http://i.epvpimg.com/yPOfgab.png" width="232" height="239">
   <h1 align="center">The Bounty0x Community Bot</h1>
 </p>
-The Guard is a Telegram bot made to help admins manage their groups.
-
-Initially created to moderate [The Devs Network](https://thedevs.network).
-
-**NOTE: The Guard is still in alpha phase and is not ready for production**
 
 ## Setup
 You need [Node.js](https://nodejs.org/) (> 8.1) to run this bot.
 
 1. Create a bot via [@BotFather](https://t.me/BotFather) and grab a **token**.
-2. Clone this repository or [downlaod zip](https://github.com/TheDevs-Network/the-guard-bot/archive/master.zip).
+2. Clone this repository.
 3. Install dependencies via `npm install`.
 4. Copy `config.example.json` to `config.json`, fill it properly and remove comments.
 5. Start the bot via `npm start`.
@@ -46,9 +41,7 @@ Command                 | Role       | Available at | Description
 `/user`                 | _Admin_    | _Everywhere_ | Shows the status of the user.
 `/addcommand`           | _Admin_    | _In-Bot_     | Create a custom command.
 `/removecommand <name>` | _Admin_    | _In-Bot_     | Remove a custom command.
-`/staff`                | _Everyone_ | _Everywhere_ | Shows a list of admins.
 `/link`                 | _Everyone_ | _Everywhere_ | Shows the current group's link.
-`/groups`               | _Everyone_ | _Everywhere_ | Shows a list of groups which the bot is admin in.
 `/report`               | _Everyone_ | _Everywhere_ | Reports the replied-to message to admins.
 `/commands`             | _Everyone_ | _In-Bot_     | Shows a list of available commands.
 `/help` \| `/start`     | _Everyone_ | _In-Bot_     | How to use the bot.
@@ -57,12 +50,8 @@ All commands and actions are synchronized across all of the groups managed by th
 
 If used by reply, `/ban` and `/warn` would remove the replied-to message.
 
-The bot is still in alpha phase so feel free to open issues and ask for a _feature_.
-
-[**Roadmap**](https://github.com/TheDevs-Network/the-guard-bot/projects/1)
-
 ---
 
 > Important Note: Under the AGPL-3.0 license, if you're running your own instance, you should add a link to the source [(this repository)](https://github.com/TheDevs-Network/the-guard-bot) in your bot's bio. If you're modifying this source and making your own bot, you should link to the source of your own version of the bot according to the AGPL-3.0 license. Check [LICENSE](LICENSE) for more info.
 
-`The Guard` icon is from [Entypo+](http://entypo.com/) by Daniel Bruce.
+Credits: [The-Guard-Bot](https://github.com/TheDevs-Network/the-guard-bot)
