@@ -79,7 +79,7 @@ const removeLinks = async ({ message, chat, reply, state, update }, next) => {
 			// detect add if it's an invite link
 			if (
 				username.includes('/joinchat/') &&
-				!knownLinks.some(knownLink => knownLink.includes(username))
+				!knownLinks.some(knownLink => knownLink.includes(username.toLowerCase()))
 			) {
 				isAd = true;
 				return;
@@ -94,7 +94,7 @@ const removeLinks = async ({ message, chat, reply, state, update }, next) => {
 				if (
 					!excludeLinks
 						.some(knownLink =>
-							knownLink.includes(username.replace('@', '')))
+							knownLink.includes(username.replace('@', '').toLowerCase()))
 				) {
 					isAd = true;
 					return;
@@ -110,7 +110,7 @@ const removeLinks = async ({ message, chat, reply, state, update }, next) => {
 		forward_from_chat &&
 		forward_from_chat.type !== 'private' &&
 		excludeLinks &&
-		!excludeLinks.includes(forward_from_chat.username) ||
+		!excludeLinks.includes(forward_from_chat.username.toLowerCase()) ||
 
 		// check if text contains link/username of a channel or group
 		(caption ||
