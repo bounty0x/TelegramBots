@@ -5,18 +5,30 @@ const { Composer } = require('telegraf');
 
 const composer = new Composer();
 
+const { deleteAfter } = require('../../utils/tg');
+const { deleteJoinsAfter = '2 minutes' } = require('../../config');
+
+const addedToGroupHandler = require('./addedToGroup');
+const antibotHandler = require('./antibot');
+const kickBannedHandler = require('./kickBanned');
+const kickedFromGroupHandler = require('./kickedFromGroup');
 const leaveUnmanagedHandler = require('./leaveUnmanaged');
 const removeCommandsHandler = require('./removeCommands');
-const kickBannedHandler = require('./kickBanned');
 const syncStatusHandler = require('./syncStatus');
-const antibotHandler = require('./antibot');
-const addedToGroupHandler = require('./addedToGroup');
+const updateUserDataHandler = require('./updateUserData');
 
 composer.on('new_chat_members', addedToGroupHandler);
+composer.on('left_chat_member', kickedFromGroupHandler);
 composer.use(leaveUnmanagedHandler);
-composer.use(removeCommandsHandler);
-composer.use(kickBannedHandler);
-composer.on('new_chat_members', syncStatusHandler);
-composer.on('new_chat_members', antibotHandler);
+composer.on('message', updateUserDataHandler);
+composer.on('new_chat_members', syncStatusHandler, antibotHandler);
+composer.on('message', kickBannedHandler);
+composer.on('text', removeCommandsHandler);
+composer.on(
+	[ 'new_chat_members', 'left_chat_member' ],
+	deleteJoinsAfter === false
+		? Composer.passThru
+		: deleteAfter(millisecond(deleteJoinsAfter))
+);
 
 module.exports = composer;

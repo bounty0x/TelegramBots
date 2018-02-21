@@ -45,7 +45,11 @@ composer.command('unban', deleteMessage, unbanHandler);
 composer.command('report', deleteMessage, reportHandler);
 composer.hears(/^@admins?\s?/i, deleteMessage, reportHandler);
 composer.command('commands', deleteMessage, commandReferenceHandler);
-composer.command('addcommand', deleteMessage, addCommandHandler);
+composer.command(
+	[ 'addcommand', 'replaceCommand' ],
+	deleteMessage,
+	addCommandHandler
+);
 composer.command('removecommand', deleteMessage, removeCommandHandler);
 composer.command([ 'start', 'help' ], deleteMessage, helpHandler);
 

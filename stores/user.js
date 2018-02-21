@@ -4,6 +4,7 @@
 const { logError } = require('../utils/log');
 
 const Datastore = require('nedb-promise');
+const R = require('ramda');
 
 const User = new Datastore({
 	autoload: true,
@@ -18,6 +19,22 @@ User.ensureIndex({
 User.ensureIndex({
 	fieldName: 'status',
 });
+
+// Migration
+User.update(
+	{ username: '' },
+	{ $unset: { username: true } },
+	{ multi: true }
+).then(() =>
+	User.ensureIndex({ fieldName: 'username', sparse: true, unique: true }));
+
+const normalizeTgUser = R.pipe(
+	R.pick([ 'first_name', 'id', 'last_name', 'username' ]),
+	R.evolve({ username: R.toLower }),
+	R.merge({ first_name: '', last_name: '' }),
+);
+
+const getUpdatedDocument = R.prop(1);
 
 const addUser = ({ id, first_name = '', last_name = '', username = '' }) =>
 	User.update(
@@ -39,6 +56,37 @@ const isUser = ({ id }) =>
 
 const getUser = user =>
 	User.findOne(user);
+
+const updateUser = async (rawTgUser) => {
+	const tgUser = normalizeTgUser(rawTgUser);
+
+	const { id, username } = tgUser;
+
+	const [ rawDbUser ] = await Promise.all([
+		getUser({ id }),
+		User.update({ $not: { id }, username }, { $unset: { username: true } }),
+	]);
+
+	if (rawDbUser === null) {
+		return User.update(
+			{ id },
+			{ status: 'member', warns: [], ...tgUser },
+			{ returnUpdatedDocs: true, upsert: true }
+		).then(getUpdatedDocument);
+	}
+
+	const dbUser = rawDbUser;
+
+	if (!R.whereEq(tgUser, dbUser)) {
+		return User.update(
+			{ id },
+			{ $set: tgUser },
+			{ returnUpdatedDocs: true }
+		).then(getUpdatedDocument);
+	}
+
+	return dbUser;
+};
 
 const admin = ({ id }) =>
 	User.update(
@@ -69,7 +117,11 @@ const isBanned = ({ id }) =>
 		.then(user => user ? user.ban_reason : null);
 
 const warn = ({ id }, reason) =>
-	User.update({ id }, { $push: { warns: reason } });
+	User.update(
+		{ id },
+		{ $push: { warns: reason } },
+		{ returnUpdatedDocs: true }
+	).then(getUpdatedDocument);
 
 const unwarn = ({ id }) =>
 	User.update(
@@ -99,5 +151,6 @@ module.exports = {
 	unadmin,
 	unban,
 	unwarn,
+	updateUser,
 	warn
 };
