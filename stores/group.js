@@ -13,10 +13,19 @@ Group.ensureIndex({
 });
 
 const addGroup = group =>
-	Group.update(group.id, group, { upsert: true });
+	Group.update({ id: group.id }, group, { upsert: true });
+
+const hideGroup = ({ id }) =>
+	Group.update({ id }, { $set: { link: '' } });
+
+const updateGroup = group =>
+	Group.update({ id: group.id }, { $set: group });
 
 const listGroups = () =>
 	Group.find({});
+
+const listVisibleGroups = () =>
+	Group.cfind({ $not: { link: '' } }).sort({ title: 1 }).exec();
 
 const managesGroup = group =>
 	Group.findOne(group);
@@ -26,7 +35,10 @@ const removeGroup = ({ id }) =>
 
 module.exports = {
 	addGroup,
+	hideGroup,
 	listGroups,
+	listVisibleGroups,
 	managesGroup,
 	removeGroup,
+	updateGroup,
 };

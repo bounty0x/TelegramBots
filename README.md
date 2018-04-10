@@ -7,25 +7,34 @@
 You need [Node.js](https://nodejs.org/) (> 8.1) to run this bot.
 
 1. Create a bot via [@BotFather](https://t.me/BotFather) and grab a **token**.
-2. Clone this repository.
+2. Clone this repository or [download zip](https://github.com/bounty0x/TelegramBots/archive/master.zip).
 3. Install dependencies via `npm install`.
-4. Copy `config.example.json` to `config.json`, fill it properly and remove comments.
+4. Copy `example.config.js` to `config.js` and edit it.
 5. Start the bot via `npm start`.
+
+## Setup with Docker
+You need to have [docker](https://docs.docker.com/engine/installation/linux/docker-ce/ubuntu/#install-from-a-package) installed on your machine.
+
+1. Create a bot via [@BotFather](https://t.me/BotFather) and grab a **token**.
+2. Clone this repository or [download zip](https://github.com/bounty0x/TelegramBots/archive/master.zip).
+3. Copy `example.config.js` to `config.js` and edit it.
+4. Run `docker build -t bounty0x_bot .` to build image.
+5. Run `docker run --rm -itd bounty0x_bot` to start the bot.
 
 Now you can add the bot as **administrator** to your groups.
 
 ## Features
-* Synchronized database accross multiple groups.
+* Synchronized database across multiple groups.
 * Adding admins to the bot.
 * Auto-remove and warn channels and groups ads.
 * Kick bots added by users.
-* Warn and ban users to controll the group.
+* Warn and ban users to control the group.
 * Commands work with replying, mentioning and ID.
 * Removes commands and temporary bot messages.
 * Ability to create custom commands.
 * Supports plugins.
 
-Overally, keeps the groups clean and healthy to use.
+Overall, keeps the groups clean and healthy to use.
 
 ## Commands
 Command                 | Role       | Available at | Description
@@ -33,6 +42,8 @@ Command                 | Role       | Available at | Description
 `/admin`                | _Master_   | _Everywhere_ | Makes the user admin in the bot and groups.
 `/unadmin`              | _Master_   | _Everywhere_ | Demotes the user from admin list.
 `/leave <name\|id>`     | _Master_   | _Everywhere_ | Make the bot to leave the group cleanly.
+`/hidegroup`            | _Master_   | _Groups_     | Revoke invite link and hide the group from `/groups` list.
+`/showgroup`            | _Master_   | _Groups_     | Make the group accessible via `/groups` list.
 `/warn <reason>`        | _Admin_    | _Groups_     | Warns the user.
 `/unwarn`               | _Admin_    | _Everywhere_ | Removes the last warn from the user.
 `/nowarns`              | _Admin_    | _Everywhere_ | Clears warns for the user.
@@ -41,7 +52,9 @@ Command                 | Role       | Available at | Description
 `/user`                 | _Admin_    | _Everywhere_ | Shows the status of the user.
 `/addcommand <name>`    | _Admin_    | _In-Bot_     | Create a custom command.
 `/removecommand <name>` | _Admin_    | _In-Bot_     | Remove a custom command.
+`/staff`                | _Everyone_ | _Everywhere_ | Shows a list of admins.
 `/link`                 | _Everyone_ | _Everywhere_ | Shows the current group's link.
+`/groups`               | _Everyone_ | _Everywhere_ | Shows a list of groups which the bot is admin in.
 `/report`               | _Everyone_ | _Everywhere_ | Reports the replied-to message to admins.
 `/commands`             | _Everyone_ | _In-Bot_     | Shows a list of available commands.
 `/help` \| `/start`     | _Everyone_ | _In-Bot_     | How to use the bot.
@@ -52,6 +65,6 @@ If used by reply, `/ban` and `/warn` would remove the replied-to message.
 
 ---
 
-> Important Note: Under the AGPL-3.0 license, if you're running your own instance, you should add a link to the source [(this repository)](https://github.com/TheDevs-Network/the-guard-bot) in your bot's bio. If you're modifying this source and making your own bot, you should link to the source of your own version of the bot according to the AGPL-3.0 license. Check [LICENSE](LICENSE) for more info.
+> Important Note: Under the AGPL-3.0 license, if you're running your own instance, you should add a link to the source [(this repository)](https://github.com/bounty0x/TelegramBots) in your bot's bio. If you're modifying this source and making your own bot, you should link to the source of your own version of the bot according to the AGPL-3.0 license. Check [LICENSE](LICENSE) for more info.
 
 Credits: [The-Guard-Bot](https://github.com/TheDevs-Network/the-guard-bot)

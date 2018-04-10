@@ -8,7 +8,7 @@ const { Markup } = require('telegraf');
 const { replyOptions } = require('../../bot/options');
 
 const preserved = [ 'admin', 'unadmin', 'leave', 'warn', 'unwarn', 'nowarns',
-	'getwarns', 'ban', 'unban', 'report', 'commands',
+	'getwarns', 'ban', 'unban', 'report', 'staff', 'link', 'groups', 'commands',
 	'addcommand', 'removecommand' ];
 
 const addCommandHandler = async (ctx, next) => {
