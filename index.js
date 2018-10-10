@@ -1,4 +1,4 @@
-'use strict';
+
 
 // Utils
 const { logError } = require('./utils/log');

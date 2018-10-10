@@ -1,5 +1,3 @@
-'use strict';
-
 // DB
 const { listCommands } = require('../../stores/command');
 
@@ -33,13 +31,13 @@ const commandReferenceHandler = async ({ chat, replyWithHTML }) => {
 
 	const customCommands = await listCommands();
 	const customCommandsText = customCommands.length
-		? '\n<b>Custom commands:</b>\n' +
-		customCommands
+		? '\n<b>Custom commands:</b>\n'
+		+ customCommands
 			.filter(command => command.isActive)
 			.sort((a, b) => a.role.toLowerCase() < b.role.toLowerCase())
 			.map(command =>
-				`[${command.role.toLowerCase()}] ` +
-				`<code>!${command.name}</code>`)
+				`[${command.role.toLowerCase()}] `
+				+ `<code>!${command.name}</code>`)
 			.join('\n')
 		: '';
 	return replyWithHTML(commandReference + customCommandsText);

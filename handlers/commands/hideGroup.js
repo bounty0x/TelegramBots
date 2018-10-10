@@ -1,5 +1,3 @@
-'use strict';
-
 const { hideGroup } = require('../../stores/group');
 
 const noop = Function.prototype;

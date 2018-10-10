@@ -1,5 +1,3 @@
-'use strict';
-
 // Utils
 const { link, scheduleDeletion } = require('../../utils/tg');
 const { logError } = require('../../utils/log');
@@ -53,7 +51,8 @@ const nowarnsHandler = async ({ message, reply, state, telegram }) => {
 
 	try {
 		await nowarns(userToUnwarn);
-	} catch (err) {
+	}
+	catch (err) {
 		logError(err);
 	}
 
@@ -69,8 +68,8 @@ const nowarnsHandler = async ({ message, reply, state, telegram }) => {
 	}
 
 	return reply(
-		`♻️ ${link(user)} <b>pardoned</b> ${link(userToUnwarn)} ` +
-		'<b>for all of their warnings.</b>',
+		`♻️ ${link(user)} <b>pardoned</b> ${link(userToUnwarn)} `
+		+ '<b>for all of their warnings.</b>',
 		replyOptions
 	);
 };

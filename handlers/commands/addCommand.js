@@ -1,5 +1,3 @@
-'use strict';
-
 // DB
 const { addCommand, getCommand } = require('../../stores/command');
 
@@ -27,15 +25,15 @@ const addCommandHandler = async (ctx, next) => {
 	const isValidName = commandName && commandName.match(/^(?:[!])?(\w+)$/);
 	if (!isValidName) {
 		return reply(
-			'<b>Send a valid command.</b>\n\nExample:\n' +
-			'<code>/addcommand rules</code>',
+			'<b>Send a valid command.</b>\n\nExample:\n'
+			+ '<code>/addcommand rules</code>',
 			replyOptions
 		);
 	}
 	const newCommand = isValidName[1].toLowerCase();
 	if (preserved.includes(newCommand)) {
-		reply('❗️ Sorry you can\'t use this name, it\'s preserved.\n\n' +
-			'Try another one.');
+		reply('❗️ Sorry you can\'t use this name, it\'s preserved.\n\n'
+			+ 'Try another one.');
 		return next();
 	}
 
@@ -45,11 +43,11 @@ const addCommandHandler = async (ctx, next) => {
 
 	if (!replaceCmd && cmdExists) {
 		return ctx.replyWithHTML(
-			'ℹ️ <b>This command already exists.</b>\n\n' +
-			'/commands - to see the list of commands.\n' +
-			'/addcommand <code>&lt;name&gt;</code> - to add a command.\n' +
-			'/removecommand <code>&lt;name&gt;</code>' +
-			' - to remove a command.',
+			'ℹ️ <b>This command already exists.</b>\n\n'
+			+ '/commands - to see the list of commands.\n'
+			+ '/addcommand <code>&lt;name&gt;</code> - to add a command.\n'
+			+ '/removecommand <code>&lt;name&gt;</code>'
+			+ ' - to remove a command.',
 			Markup.keyboard([ [ `/replaceCommand ${newCommand}` ] ])
 				.oneTime()
 				.resize()

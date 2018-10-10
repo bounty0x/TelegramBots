@@ -1,5 +1,3 @@
-'use strict';
-
 const { updateGroup } = require('../../stores/group');
 
 module.exports = (ctx, next) => {

@@ -1,5 +1,3 @@
-'use strict';
-
 const { removeGroup } = require('../../stores/group');
 
 const kickedFromGroupHandler = (ctx, next) => {

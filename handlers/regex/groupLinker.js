@@ -1,5 +1,3 @@
-'use strict';
-
 const { hears } = require('telegraf');
 const XRegExp = require('xregexp');
 

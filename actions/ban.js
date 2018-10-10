@@ -1,5 +1,3 @@
-'use strict';
-
 const dedent = require('dedent-js');
 
 const { telegram } = require('../bot');

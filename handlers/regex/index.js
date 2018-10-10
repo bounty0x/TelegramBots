@@ -1,5 +1,3 @@
-'use strict';
-
 const { compose } = require('telegraf');
 
 /* eslint-disable global-require */

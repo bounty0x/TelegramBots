@@ -1,5 +1,4 @@
 # Plugins #
-
 Plugins let you extend the bot with new functionality
 without touching source code of the bot.
 

@@ -1,5 +1,3 @@
-'use strict';
-
 // DB
 const { addUser, getUser } = require('../../stores/user');
 

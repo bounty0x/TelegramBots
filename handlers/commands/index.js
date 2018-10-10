@@ -1,5 +1,3 @@
-'use strict';
-
 const { Composer } = require('telegraf');
 
 const composer = new Composer();
@@ -27,8 +25,8 @@ const helpHandler = require('./help');
 const { deleteCommands = 'own' } = require('../../config');
 
 if (![ 'all', 'own', 'none' ].includes(deleteCommands)) {
-	throw new Error('Invalid value for `deleteCommands` in `config.json`: ' +
-		deleteCommands);
+	throw new Error('Invalid value for `deleteCommands` in `config.json`: '
+		+ deleteCommands);
 }
 
 const deleteMessage = ({ chat, message, telegram }, next) => {

@@ -1,5 +1,3 @@
-'use strict';
-
 const dedent = require('dedent-js');
 
 const { context } = require('../bot');
@@ -26,10 +24,10 @@ module.exports = async ({ admin, userToWarn, reason }) => {
 			reason: 'Reached max number of warnings',
 			userToBan: userToWarn,
 		});
-		return warnMessage +
-			'\n\n' +
-			'🚫 The user was <b>banned</b> ' +
-			`for receiving ${numberOfWarnsToBan} warnings!`;
+		return warnMessage
+			+ '\n\n'
+			+ '🚫 The user was <b>banned</b> '
+			+ `for receiving ${numberOfWarnsToBan} warnings!`;
 	}
 
 	return warnMessage;

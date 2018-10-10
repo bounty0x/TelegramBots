@@ -1,4 +1,4 @@
-'use strict';
+
 
 /*
  * Create `config.js` by running `cp example.config.js config.js`

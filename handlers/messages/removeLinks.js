@@ -1,5 +1,3 @@
-'use strict';
-
 // Utils
 const { logError } = require('../../utils/log');
 
@@ -20,17 +18,17 @@ const warn = require('../../actions/warn');
 const removeLinks = async (ctx, next) => {
 	const { message, state, update } = ctx;
 	const { isAdmin: isStateAdmin, user: stateUser } = state;
-	const user = stateUser ||
-		await getUser({ id: update.edited_message.from.id });
+	const user = stateUser
+		|| await getUser({ id: update.edited_message.from.id });
 	const isAdmin = isStateAdmin || user.status === 'admin';
 	const updateData = message || update.edited_message;
 	const { entities, caption, forward_from_chat, text } = updateData;
 	const managedGroups = await listGroups();
 
 	if (
-		updateData.chat.type === 'private' ||
-		isAdmin ||
-		!excludeLinks) {
+		updateData.chat.type === 'private'
+		|| isAdmin
+		|| !excludeLinks) {
 		return next();
 	}
 
@@ -40,11 +38,11 @@ const removeLinks = async (ctx, next) => {
 		...excludeLinks
 	];
 
-	const regexp =
-		/(@\w+)|(\?start=)|(((t.me)|(telegram.(me|dog)))\/\w+(\/[A-Za-z0-9_-]+)?)/gi; // eslint-disable-line max-len
+	const regexp
+		= /(@\w+)|(\?start=)|(((t.me)|(telegram.(me|dog)))\/\w+(\/[A-Za-z0-9_-]+)?)/gi; // eslint-disable-line max-len
 
-	const usernames =
-		text
+	const usernames
+		= text
 			? text.match(regexp) || []
 			: [];
 
@@ -71,8 +69,8 @@ const removeLinks = async (ctx, next) => {
 
 			// detect add if it's an invite link
 			if (
-				username.includes('/joinchat/') &&
-				!knownLinks.some(knownLink => knownLink.includes(username))
+				username.includes('/joinchat/')
+				&& !knownLinks.some(knownLink => knownLink.includes(username))
 			) {
 				return true;
 			}
@@ -96,7 +94,8 @@ const removeLinks = async (ctx, next) => {
 				) {
 					return true;
 				}
-			} catch (err) {
+			}
+			catch (err) {
 				logError(err);
 			}
 			return false;
@@ -106,19 +105,19 @@ const removeLinks = async (ctx, next) => {
 
 	if (
 		// check if is forwarded from channel
-		forward_from_chat &&
-		forward_from_chat.type !== 'private' &&
-		excludeLinks &&
-		!excludeLinks.includes(forward_from_chat.username) ||
+		forward_from_chat
+		&& forward_from_chat.type !== 'private'
+		&& excludeLinks
+		&& !excludeLinks.includes(forward_from_chat.username)
 
 		// check if text contains link/username of a channel or group
-		(caption ||
-			text &&
-			(domains.some(item => text.includes(item)) ||
-				entities && entities.some(entity =>
-					entity.type === 'mention' ||
-					entity.url))) &&
-		isAd && isAd.some(item => item)
+		|| (caption
+			|| text
+			&& (domains.some(item => text.includes(item))
+				|| entities && entities.some(entity =>
+					entity.type === 'mention'
+					|| entity.url)))
+		&& isAd && isAd.some(item => item)
 	) {
 		const reason = 'Forwarded or linked channels/groups';
 		const admin = ctx.botInfo;

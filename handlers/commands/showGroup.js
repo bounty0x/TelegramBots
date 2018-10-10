@@ -1,5 +1,3 @@
-'use strict';
-
 const { updateGroup } = require('../../stores/group');
 
 module.exports = async (ctx, next) => {
@@ -13,7 +11,8 @@ module.exports = async (ctx, next) => {
 			: await ctx.exportChatInviteLink();
 
 		return updateGroup({ id, link, title });
-	} catch (err) {
+	}
+	catch (err) {
 		return ctx.reply(String(err));
 	}
 };

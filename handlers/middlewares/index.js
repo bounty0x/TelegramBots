@@ -1,5 +1,3 @@
-'use strict';
-
 const millisecond = require('millisecond');
 const { Composer } = require('telegraf');
 

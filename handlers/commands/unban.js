@@ -1,5 +1,3 @@
-'use strict';
-
 // Utils
 const { link, scheduleDeletion } = require('../../utils/tg');
 const { logError } = require('../../utils/log');
@@ -42,13 +40,15 @@ const unbanHandler = async ({ message, reply, telegram, state }) => {
 
 	try {
 		await Promise.all(unbans);
-	} catch (err) {
+	}
+	catch (err) {
 		logError(err);
 	}
 
 	try {
 		await unban(userToUnban);
-	} catch (err) {
+	}
+	catch (err) {
 		logError(err);
 	}
 
@@ -62,13 +62,13 @@ const unbanHandler = async ({ message, reply, telegram, state }) => {
 	// (it's an expected, non-critical failure)
 
 	if (userToUnban.first_name === '') {
-		return reply(`♻️ ${link(user)} <b>unbanned an user ` +
-		`with id</b> <code>${userToUnban.id}</code>.`, replyOptions);
+		return reply(`♻️ ${link(user)} <b>unbanned an user `
+		+ `with id</b> <code>${userToUnban.id}</code>.`, replyOptions);
 	}
 
 
-	return reply(`♻️ ${link(user)} <b>unbanned</b> ` +
-		`${link(userToUnban)}.`, replyOptions);
+	return reply(`♻️ ${link(user)} <b>unbanned</b> `
+		+ `${link(userToUnban)}.`, replyOptions);
 };
 
 module.exports = unbanHandler;

@@ -1,5 +1,3 @@
-'use strict';
-
 const R = require('ramda');
 const Tf = require('telegraf');
 

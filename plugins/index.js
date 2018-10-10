@@ -1,5 +1,3 @@
-'use strict';
-
 const { compose } = require('telegraf');
 
 const config = require('../config');

@@ -1,4 +1,3 @@
-'use strict';
 const { Markup } = require('telegraf');
 const { homepage } = require('../../package.json');
 

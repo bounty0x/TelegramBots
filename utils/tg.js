@@ -1,5 +1,3 @@
-'use strict';
-
 const { telegram } = require('../bot');
 
 const escapeHtml = s => s
