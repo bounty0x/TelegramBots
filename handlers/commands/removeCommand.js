@@ -1,5 +1,3 @@
-'use strict';
-
 // DB
 const { getCommand, removeCommand } = require('../../stores/command');
 
@@ -20,8 +18,8 @@ const removeCommandHandler = async ({ chat, message, reply, state }) => {
 	const [ , commandName ] = text.split(' ');
 	if (!commandName) {
 		return reply(
-			'<b>Send a valid command.</b>\n\nExample:\n' +
-			'<code>/removecommand rules</code>',
+			'<b>Send a valid command.</b>\n\nExample:\n'
+			+ '<code>/removecommand rules</code>',
 			replyOptions
 		);
 	}
@@ -44,8 +42,8 @@ const removeCommandHandler = async ({ chat, message, reply, state }) => {
 
 	await removeCommand({ name: commandName.toLowerCase() });
 	return reply(
-		`✅ <code>!${commandName}</code> ` +
-		'<b>has been removed successfully.</b>',
+		`✅ <code>!${commandName}</code> `
+		+ '<b>has been removed successfully.</b>',
 		replyOptions
 	);
 };

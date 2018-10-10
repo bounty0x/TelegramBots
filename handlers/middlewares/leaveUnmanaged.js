@@ -1,5 +1,3 @@
-'use strict';
-
 // Utils
 const { logError } = require('../../utils/log');
 
@@ -48,14 +46,15 @@ const randomChoice = arr => arr[Math.floor(Math.random() * arr.length)];
  */
 const leaveUnmanagedHandler = async (ctx, next) => {
 	if (
-		ctx.chat.type === 'private' ||
-		await managesGroup({ id: ctx.chat.id })) {
+		ctx.chat.type === 'private'
+		|| await managesGroup({ id: ctx.chat.id })) {
 		return next();
 	}
 
 	try {
 		await ctx.replyWithVideo(randomChoice(gifs), { caption, reply_markup });
-	} catch (err) {
+	}
+	catch (err) {
 		logError(err);
 	}
 	await ctx.telegram.leaveChat(ctx.chat.id);

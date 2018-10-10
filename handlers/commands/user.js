@@ -1,5 +1,3 @@
-'use strict';
-
 // Utils
 const { scheduleDeletion } = require('../../utils/tg');
 
@@ -39,12 +37,12 @@ const getWarnsHandler = async ({ message, reply, state }) => {
 		: '';
 
 	return reply(
-		userName +
-		userStatus +
-		userId +
-		userUsername +
-		userWarns +
-		banReason,
+		userName
+		+ userStatus
+		+ userId
+		+ userUsername
+		+ userWarns
+		+ banReason,
 		replyOptions
 	).then(scheduleDeletion);
 };

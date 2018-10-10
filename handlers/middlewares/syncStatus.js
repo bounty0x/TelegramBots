@@ -1,5 +1,3 @@
-'use strict';
-
 const { getUser } = require('../../stores/user');
 
 const syncStatusHandler = (ctx, next) => {

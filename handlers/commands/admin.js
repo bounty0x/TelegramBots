@@ -1,5 +1,3 @@
-'use strict';
-
 // Utils
 const { link } = require('../../utils/tg');
 const { logError } = require('../../utils/log');
@@ -40,14 +38,16 @@ const adminHandler = async ({ message, reply, state }) => {
 	if (await getWarns(userToAdmin)) {
 		try {
 			await nowarns(userToAdmin);
-		} catch (err) {
+		}
+		catch (err) {
 			logError(err);
 		}
 	}
 
 	try {
 		await admin(userToAdmin);
-	} catch (err) {
+	}
+	catch (err) {
 		logError(err);
 	}
 

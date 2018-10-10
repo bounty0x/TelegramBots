@@ -1,5 +1,3 @@
-'use strict';
-
 // Utils
 const { link, scheduleDeletion } = require('../../utils/tg');
 const { logError } = require('../../utils/log');
@@ -55,7 +53,8 @@ const unAdminHandler = async ({ message, reply, state }) => {
 
 	try {
 		await unadmin(userToUnadmin);
-	} catch (err) {
+	}
+	catch (err) {
 		logError(err);
 	}
 

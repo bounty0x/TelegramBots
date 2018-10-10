@@ -1,5 +1,3 @@
-'use strict';
-
 const Datastore = require('nedb-promise');
 
 const Group = new Datastore({

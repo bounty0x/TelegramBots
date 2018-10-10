@@ -1,5 +1,3 @@
-'use strict';
-
 // Utils
 const { quietLink, scheduleDeletion } = require('../../utils/tg');
 

@@ -1,5 +1,3 @@
-'use strict';
-
 // Bot
 const { replyOptions } = require('../../bot/options');
 

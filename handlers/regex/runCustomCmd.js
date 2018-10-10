@@ -1,5 +1,3 @@
-'use strict';
-
 const { hears } = require('telegraf');
 const R = require('ramda');
 
@@ -29,10 +27,10 @@ const runCustomCmdHandler = async (ctx, next) => {
 	const { caption, content, type } = command;
 	const role = command.role.toLowerCase();
 	if (
-		role === 'master' &&
-		!isMaster ||
-		role === 'admins' &&
-		!isAdmin
+		role === 'master'
+		&& !isMaster
+		|| role === 'admins'
+		&& !isAdmin
 	) {
 		return next();
 	}

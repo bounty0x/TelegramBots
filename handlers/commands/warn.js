@@ -1,8 +1,5 @@
-'use strict';
-
 // Utils
-const { link, scheduleDeletion } = require('../../utils/tg');
-const { logError } = require('../../utils/log');
+const { scheduleDeletion } = require('../../utils/tg');
 
 // Config
 const {

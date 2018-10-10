@@ -1,5 +1,3 @@
-'use strict';
-
 // Utils
 const { link, scheduleDeletion } = require('../../utils/tg');
 
@@ -16,9 +14,9 @@ const reportHandler = async ctx => {
 	}
 	const admins = (await ctx.getChatAdministrators())
 		.filter(member =>
-			member.status === 'creator' ||
-			member.can_delete_messages &&
-			member.can_restrict_members
+			member.status === 'creator'
+			|| member.can_delete_messages
+			&& member.can_restrict_members
 		// eslint-disable-next-line function-paren-newline
 		).map(member => member.user);
 	const adminObjects = admins.map(user => ({
@@ -26,8 +24,8 @@ const reportHandler = async ctx => {
 		id: user.id,
 	}));
 	const adminsMention = adminObjects.map(link).join('');
-	const s = `❗️${link(ctx.from)} <b>reported the message to the admins.</b>` +
-		`${adminsMention}`;
+	const s = `❗️${link(ctx.from)} <b>reported the message to the admins.</b>`
+		+ `${adminsMention}`;
 	return ctx.replyWithHTML(s, {
 		reply_to_message_id: msg.reply_to_message.message_id
 	});

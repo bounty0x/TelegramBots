@@ -1,5 +1,3 @@
-'use strict';
-
 const { managesGroup, removeGroup } = require('../../stores/group');
 
 const leaveCommandHandler = async ctx => {
