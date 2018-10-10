@@ -1,8 +1,5 @@
 {
 	"parserOptions": {
-		"ecmaFeatures": {
-			"experimentalObjectRestSpread": true
-		},
 		"ecmaVersion": 2017
 	},
 	"env": {
